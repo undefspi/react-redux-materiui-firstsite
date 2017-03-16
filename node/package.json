@@ -1,0 +1,19 @@
+{
+  "name": "react-redux-materialui-firstsite",
+  "version": "0.0.1",
+  "description": "First attempt at material-ui with react-redux",
+  "main": "bundle.js",
+  "scripts": {
+    "test": "start webpack-dev-server --hot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/undefspi/react-redux-materiui-firstsite.git"
+  },
+  "author": "Chris Beech",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/undefspi/react-redux-materiui-firstsite/issues"
+  },
+  "homepage": "https://github.com/undefspi/react-redux-materiui-firstsite#readme"
+}
