@@ -4,7 +4,7 @@
   "description": "First attempt at material-ui with react-redux",
   "main": "bundle.js",
   "scripts": {
-    "test": "start webpack-dev-server --hot"
+    "start": "webpack-dev-server --hot"
   },
   "repository": {
     "type": "git",
