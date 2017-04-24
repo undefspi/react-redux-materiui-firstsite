@@ -15,8 +15,8 @@ var initialState = {
 const reducer = function(state = initialState, action){
   console.log('Main Application Reducer called with state',state,'and action',action)
  
- switch(action.type){
-   case 'GENERATE_SCHEMA':
+  switch(action.type){
+   case 'UPDATE_OUTPUT':
     state.data.GenerateSchema.input = action.value
     return state;
     break;
