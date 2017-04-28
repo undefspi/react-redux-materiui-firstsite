@@ -10,8 +10,7 @@ export default React.createClass({
    generateRows(){
         var key = 0;
         var rows = [
-            <SchemaGenForm key='1'/>,
-            <SchemaGenForm key='2'/>
+            <SchemaGenForm key='1'/>
         ]        
 
         return rows;
