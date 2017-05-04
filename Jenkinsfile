@@ -10,7 +10,4 @@ node{
 	def lastName = "beech"
 	
 	println "Hello, ${firstName[0]}. $lastName"
-	
-	stage 'saveFile'
-	
 }
