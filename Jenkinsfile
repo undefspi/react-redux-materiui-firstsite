@@ -8,6 +8,6 @@ node{
 	println "Hello World"
 	def firstName = "chris"
 	def lastName = "beech"
-	
 	println "Hello, ${firstName[0]}. $lastName"
+	
 }
