@@ -9,5 +9,6 @@ node{
 	def firstName = "chris"
 	def lastName = "beech"
 	println "Hello, ${firstName}"
+	println "${BUILD_URL}"
 	
 }
