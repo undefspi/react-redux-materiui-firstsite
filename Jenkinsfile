@@ -5,5 +5,5 @@ node{
 	echo "Checking out SCM"
 	checkout scm
 	
-	System.out.println("Hello World")
+	println "Hello World"
 }
