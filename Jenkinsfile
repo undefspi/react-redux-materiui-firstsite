@@ -10,6 +10,6 @@ node{
 	def lastName = "beech"
 	println "Hello, ${firstName}"
 	println "${env.PATH}"
-	println "env.BUILD_URL"
+	println "${env.BUILD_URL}"
 	
 }
