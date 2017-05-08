@@ -11,5 +11,6 @@ node{
 	println "Hello, ${firstName}"
 	println "${env.PATH}"
 	println "${env.BUILD_URL}"
+	sh """printenv"""
 	
 }
