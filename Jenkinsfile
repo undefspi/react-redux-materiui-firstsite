@@ -12,5 +12,5 @@ node{
 	println "${env.PATH}"
 	println "${env.BUILD_URL}"
 	sh """printenv"""
-	sh "wget wget www.google.co.uk"	
+	sh "wget www.google.co.uk"	
 }
