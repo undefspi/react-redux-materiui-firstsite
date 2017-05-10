@@ -35,5 +35,10 @@ node{
 
 		def stuff = header.get("stuff")
 		println stuff
+		getJenkinsBuild("userid")
 	}
+}
+
+def getJenkinsBuild(field){
+    println("Getting build info for " + field)
 }
