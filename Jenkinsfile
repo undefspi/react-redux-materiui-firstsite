@@ -11,9 +11,9 @@ node{
 	def buildNum = env.BUILD_ID
 	
 	sh """printenv"""
-	println "build number = ${buildNum}"
+	println "build url = ${buildUrl}"
 	println "build id = ${buildNum}"
-	
+
 	def buildJson = sh(returnStdout: true, script: "wget localhost:8080 -O-")	
 
 	testJson = "{\"investigations\":[{\"header\":{\"stuff\":\"first array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}},{\"header\":{\"stuff\":\"second array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}} ]}"
