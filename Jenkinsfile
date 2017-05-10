@@ -13,10 +13,11 @@ node{
 	println "${env.PATH}"
 	println "${env.BUILD_URL}"
 	sh """printenv"""
-	sh "wget www.google.co.uk -O-"	
+	def buildJson = sh(returnStdout: true, script: "wget www.google.co.uk -O-")	
 
 	testJson = "{\"investigations\":[{\"header\":{\"stuff\":\"first array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}},{\"header\":{\"stuff\":\"second array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}} ]}"
 	println(testJson)
+	println(buildJson)
 	JsonSlurper jsl = new JsonSlurper()
 
 	def jsonObj = jsl.parseText(testJson)
