@@ -12,7 +12,7 @@ node{
 	
 	sh """printenv"""
 	println "build url = ${buildUrl}"
-	println "build id = ${buildNum}"
+	 println "build id = ${buildNum}"
 
 	def buildJson = sh(returnStdout: true, script: "wget localhost:8080 -O-")	
 
