@@ -9,12 +9,8 @@ node{
 	stage 'deploy ansible'
 	def buildUrl = env.BUILD_URL
 	def buildNum = env.BUILD_ID
-	
 	sh """printenv"""
-	println "build url = ${buildUrl}"
-	 println "build id = ${buildNum}"
-
-	def buildJson = sh(returnStdout: true, script: "wget localhost:8080 -O-")	
+	def buildJson = sh(returnStdout: true, script: "wget ${buildUrl}/${buildNum}/api/json:8080 -O-")	
 
 	testJson = "{\"investigations\":[{\"header\":{\"stuff\":\"first array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}},{\"header\":{\"stuff\":\"second array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}} ]}"
 	println(testJson)
