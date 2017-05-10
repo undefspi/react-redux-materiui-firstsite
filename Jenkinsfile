@@ -6,14 +6,15 @@ node{
 	echo "Checking out SCM"
 	checkout scm
 	
-	println "Hello World"
-	def firstName = "chris"
-	def lastName = "beech"
-	println "Hello, ${firstName}"
-	println "${env.PATH}"
-	println "${env.BUILD_URL}"
+	stage 'deploy ansible'
+	def buildUrl = env.BUILD_URL
+	def buildNum = env.BUILD_ID
+	
 	sh """printenv"""
-	def buildJson = sh(returnStdout: true, script: "wget www.google.co.uk -O-")	
+	println "build number = ${buildNum}"
+	println "build id = ${buildNum}"
+	
+	def buildJson = sh(returnStdout: true, script: "wget localhost:8080 -O-")	
 
 	testJson = "{\"investigations\":[{\"header\":{\"stuff\":\"first array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}},{\"header\":{\"stuff\":\"second array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}} ]}"
 	println(testJson)
