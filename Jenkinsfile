@@ -9,10 +9,11 @@ node{
 	stage 'deploy ansible'
 	def buildUrl = env.BUILD_URL
 	sh """printenv"""
-
+	def buildJson = ''
 	withCredentials([usernamePassword(credentialsId: 'jenkinslogin', passwordVariable: 'JENKINSPASSWORD', usernameVariable: 'JENKINSUSERNAME')]) {
-		def buildJson = sh(returnStdout: true, script: "wget ${buildUrl}api/json --user=${env.JENKINSUSERNAME} --password=${env.JENKINSPASSWORD} --auth-no-challenge -O-")	
+		buildJson = sh(returnStdout: true, script: "wget ${buildUrl}api/json --user=${env.JENKINSUSERNAME} --password=${env.JENKINSPASSWORD} --auth-no-challenge -O-")	
 	}
+	println("${buildJson}")
 	//testJson = "{\"investigations\":[{\"header\":{\"stuff\":\"first array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}},{\"header\":{\"stuff\":\"second array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}} ]}"
 	
 	
