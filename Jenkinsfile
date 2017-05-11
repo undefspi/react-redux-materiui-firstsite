@@ -16,18 +16,20 @@ node{
 	println("${buildJson}")
 	//testJson = "{\"investigations\":[{\"header\":{\"stuff\":\"first array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}},{\"header\":{\"stuff\":\"second array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}} ]}"
 	
-	
 	JsonSlurper jsl = new JsonSlurper()
 	def jsonObj = jsl.parseText(buildJson)
-
 	assert jsonObj instanceof Map
+	def changeSets = jsonObj.get("changeSets")
+	assert changeSets instanceof List
 
-	def jsonActionsArray = jsonObj.get("actions")
-	assert jsonActionsArray instanceof List
-
-	for (int i = 0; i < 2; i++) {
-		def action = jsonActionsArray[i]
-		assert action instanceof Map
+	for (int i = 0; i < changeSets.size(); i++) {
+		def change = changeSets[i]
+		for (item in change.get('items') ) {
+			def fullName = item.get("author").get("fullName")
+			println("${fullName}")
+			
+		}
+		assert change instanceof Map
 	}
 }
 
