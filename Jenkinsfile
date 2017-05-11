@@ -7,14 +7,11 @@ node{
 	checkout scm
 	
 	stage 'deploy ansible'
-	def pass = 'INw2LEo1!'
-	def user = 'cbeech'
+	def pass = {}
 	def buildUrl = env.BUILD_URL
 	def buildNum = env.BUILD_ID
 	sh """printenv"""
 	def buildJson = sh(returnStdout: true, script: "set +x && wget ${buildUrl}api/json --user=$user --password=$pass --auth-no-challenge -O-")	
-	sh "set -x"
-	
 	testJson = "{\"investigations\":[{\"header\":{\"stuff\":\"first array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}},{\"header\":{\"stuff\":\"second array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}} ]}"
 	println(testJson)
 	println(buildJson)
@@ -42,4 +39,8 @@ node{
 
 def getJenkinsBuild(field){
     println("Getting build info for " + field)
+}
+
+def getCredentials(){
+
 }
