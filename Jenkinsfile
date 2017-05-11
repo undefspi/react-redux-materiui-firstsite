@@ -22,7 +22,7 @@ node{
 
 	assert jsonObj instanceof Map
 
-	def jsonActionsArray = jsonRoot.get("actions")
+	def jsonActionsArray = jsonObj.get("actions")
 	assert jsonActionsArray instanceof List
 
 	for (int i = 0; i < 2; i++) {
