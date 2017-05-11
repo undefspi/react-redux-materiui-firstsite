@@ -11,7 +11,10 @@ node{
 	def buildUrl = env.BUILD_URL
 	def buildNum = env.BUILD_ID
 	sh """printenv"""
-	def buildJson = sh(returnStdout: true, script: "set +x && wget ${buildUrl}api/json --user=cbeech --password=INw2LEo1! --auth-no-challenge -O-")	
+
+	withCredentials([usernamePassword(credentialsId: 'jenkinslogin', passwordVariable: 'JENKINSPASSWORD', usernameVariable: 'JENKINSUSERNAME')]) {
+		def buildJson = sh(returnStdout: true, script: "wget ${buildUrl}api/json --user=${env.JENKINSUSERNAME} --password=${env.JENKINSPASSWORD} --auth-no-challenge -O-")	
+	}
 	testJson = "{\"investigations\":[{\"header\":{\"stuff\":\"first array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}},{\"header\":{\"stuff\":\"second array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}} ]}"
 	println(testJson)
 	println(buildJson)
