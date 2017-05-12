@@ -31,18 +31,28 @@ def getBuildDetails(){
 def getLatestChangeSetUser(buildJson){
 	def buildUser = ''
 	JsonSlurper jsl = new JsonSlurper()
-	def jsonObj = jsl.parseText(buildJson)
-	assert jsonObj instanceof Map
-	def changeSets = jsonObj.get("changeSets")
-	assert changeSets instanceof List
+	try{
+		def jsonObj = jsl.parseText(buildJson)
+		assert jsonObj instanceof Map
+		def changeSets = jsonObj.get("changeSets")
+		assert changeSets instanceof List
+	}catch(Exception mpe) {
+		println("unable to get changesets from json: " + ex.message)
+		return ''
+	}
 
-	for (int i = 0; i < changeSets.size(); i++) {
-		def change = changeSets[i]
-		assert change instanceof Map
-		for (item in change.get('items') ) {
-			buildUser = item.get("author").get("fullName")
+	try{
+		for (int i = 0; i < changeSets.size(); i++) {
+			def change = changeSets[i]
+			assert change instanceof Map
+			for (item in change.get('items') ) {
+				buildUser = item.get("author").get("fullName")
+			}
 		}
+	}catch(Exception che){
+		println("unsbale to retrieve user details from changesets" + che.message)
+		return ''
 	}
 
 	return buildUser
-}
+ }
