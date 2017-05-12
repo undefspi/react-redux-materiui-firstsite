@@ -30,6 +30,7 @@ def getBuildDetails(){
 
 def getLatestChangeSetUser(buildJson){
 	def buildUser = ''
+	def changeSets = []
 	JsonSlurper jsl = new JsonSlurper()
 	try{
 		def jsonObj = jsl.parseText(buildJson)
