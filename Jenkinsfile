@@ -34,7 +34,7 @@ def getLatestChangeSetUser(buildJson){
 	try{
 		def jsonObj = jsl.parseText(buildJson)
 		assert jsonObj instanceof Map
-		def changeSets = jsonObj.get("changeSets")
+		changeSets = jsonObj.get("changeSets")
 		assert changeSets instanceof List
 	}catch(Exception mpe) {
 		println("unable to get changesets from json: " + ex.message)
@@ -50,7 +50,7 @@ def getLatestChangeSetUser(buildJson){
 			}
 		}
 	}catch(Exception che){
-		println("unsbale to retrieve user details from changesets" + che.message)
+		println("unabale to retrieve user details from changesets" + che.message)
 		return ''
 	}
 
