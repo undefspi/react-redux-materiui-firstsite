@@ -39,7 +39,7 @@ def getLatestChangeSetUser(buildJson){
 		assert changeSets instanceof List
 	}catch(Exception mpe) {
 		println("unable to get changesets from json: " + ex.message)
-		return ''
+		throw mpe
 	}
 
 	try{
@@ -52,7 +52,7 @@ def getLatestChangeSetUser(buildJson){
 		}
 	}catch(Exception che){
 		println("unabale to retrieve user details from changesets" + che.message)
-		return ''
+		throw che
 	}
 
 	return buildUser
