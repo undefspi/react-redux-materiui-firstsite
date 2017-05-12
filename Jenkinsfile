@@ -9,7 +9,7 @@ node{
 	stage 'deploy ansible'
 	def buildUrl = env.BUILD_URL
 	sh """printenv"""
-	def buildJson = getBuildDetails
+	def buildJson = getBuildDetails()
 	
 	println("${buildJson}")
 	//testJson = "{\"investigations\":[{\"header\":{\"stuff\":\"first array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}},{\"header\":{\"stuff\":\"second array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}} ]}"
