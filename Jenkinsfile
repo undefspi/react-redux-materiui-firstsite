@@ -10,24 +10,14 @@ node{
 	def buildUrl = env.BUILD_URL
 	sh """printenv"""
 	def buildJson = getBuildDetails()
-	
-	println("${buildJson}")
-	//testJson = "{\"investigations\":[{\"header\":{\"stuff\":\"first array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}},{\"header\":{\"stuff\":\"second array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}} ]}"
-	
-	JsonSlurper jsl = new JsonSlurper()
-	def jsonObj = jsl.parseText(buildJson)
-	assert jsonObj instanceof Map
-	def changeSets = jsonObj.get("changeSets")
-	assert changeSets instanceof List
-
-	for (int i = 0; i < changeSets.size(); i++) {
-		def change = changeSets[i]
-		for (item in change.get('items') ) {
-			def fullName = item.get("author").get("fullName")
-			println("${fullName}")
-		}
-		assert change instanceof Map
+	def buildUser = getLatestChangeSetUser(buildJson)
+	if(buildUser.isEmpty()){
+		println ("Failed to get lastest ChangeSetUser")
+	}else{
+		println("Current Build User = ${buildUser}")
 	}
+	
+	//testJson = "{\"investigations\":[{\"header\":{\"stuff\":\"first array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}},{\"header\":{\"stuff\":\"second array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}} ]}"
 }
 
 def getBuildDetails(){
@@ -38,6 +28,21 @@ def getBuildDetails(){
 	return buildJson
 }
 
-def getLatestChangeSetUser(field){
-    println("Getting build info for " + field)
+def getLatestChangeSetUser(buildJson){
+	def buildUser = ''
+	JsonSlurper jsl = new JsonSlurper()
+	def jsonObj = jsl.parseText(buildJson)
+	assert jsonObj instanceof Map
+	def changeSets = jsonObj.get("changeSets")
+	assert changeSets instanceof List
+
+	for (int i = 0; i < changeSets.size(); i++) {
+		def change = changeSets[i]
+		assert change instanceof Map
+		for (item in change.get('items') ) {
+			buildUser = item.get("author").get("fullName")
+		}
+	}
+
+	return buildUser
 }
