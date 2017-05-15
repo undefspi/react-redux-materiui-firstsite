@@ -15,6 +15,12 @@ node{
 		println ("Failed to get lastest ChangeSetUser")
 	}else{
 		println("Current Build User = ${buildUser}")
+		
+   		ansiblePlaybook( 
+        	playbook: '/opt/jans/playbooks/myProject/mariadb.yml',
+        	inventory: '/opt/jans/playbooks/myProject/hosts', 
+        	extras: '--private-key="/certs/CI-TestKeyVPN.pem" --user="ec2-user"')
+		}
 	}
 	
 	//testJson = "{\"investigations\":[{\"header\":{\"stuff\":\"first array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}},{\"header\":{\"stuff\":\"second array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}} ]}"
@@ -35,7 +41,7 @@ def getLatestChangeSetUser(buildJson){
 	try{
 		def jsonObj = jsl.parseText(buildJson)
 		assert jsonObj instanceof Map
-		changeSets = jsonObj.get("changeets")
+		changeSets = jsonObj.get("changeSets")
 		assert changeSets instanceof List
 	}catch(Exception mpe) {
 		println("unable to get changesets from json: " + ex.message)
