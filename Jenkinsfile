@@ -18,9 +18,8 @@ node{
 		
    		ansiblePlaybook( 
         	playbook: '/opt/jans/playbooks/myProject/mariadb.yml',
-        	inventory: '/opt/jans/playbooks/myProject/hosts', 
-        	extras: '--private-key="/certs/CI-TestKeyVPN.pem" --user="ec2-user"')
-		
+        	inventory: '/opt/jans/playbooks/myProject/hosts',
+			credentialsId: 'CITestFile'
 	}
 	
 	//testJson = "{\"investigations\":[{\"header\":{\"stuff\":\"first array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}},{\"header\":{\"stuff\":\"second array item\"},\"data\":{\"investigation\":\"gerald\",\"code\":1}} ]}"
