@@ -8,9 +8,9 @@ var smash = function(){
     return true;
 }
 
-var a11y = require('react-a11y')
+//var a11y = require('react-a11y')
 
-a11y(React, {ReactDOM: ReactDOM, throw: true, includeSrcNode:true})
+//a11y(React, {ReactDOM: ReactDOM, throw: true, includeSrcNode:true})
 
 render(
   <App/>,
