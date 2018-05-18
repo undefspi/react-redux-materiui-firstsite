@@ -66,15 +66,17 @@ export default React.createClass({
         return(
             <div id="rows">
                 <h2 className="standardH2">This is the SchemaForm Component</h2>
-                <input 
+                <input
+                    aria-label="enter text" 
                     type="text" 
                     name="input1"
                     onChange={this.handleChange}
                     value={this.state.value}
                     ref={"nameInput1_" + this.state.isLast}
                 />
-                <input 
+                <input
                     type="text" 
+                    aria-label="bob bobbby bob"
                     onChange={this.handleChange}
                     value={this.state.value}
                     ref={"nameInput2_ " + this.state.isLast}
@@ -83,6 +85,7 @@ export default React.createClass({
                     type="button" 
                     value="button1" 
                     onClick={this.dispatchAction}
+                    aria-label="buttony buttonface"
                     />
                 <p>{this.props.someprop}</p>  
             </div>
